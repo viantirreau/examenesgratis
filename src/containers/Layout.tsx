@@ -14,7 +14,7 @@ const Layout = ({ children }: Props) => {
   return (
     <>
       <Head>
-        <title>ExámenesGratis</title>
+        <title>ExámenesVIH</title>
         <meta
           property="og:description"
           content="Busca lugares cercanos para realizarte un test de VIH gratis"
