@@ -30,7 +30,7 @@ const NavBar = () => {
         onClick={() => redirect(`/`)}
       >
         <Typography variant="h4" fontFamily="Nunito Sans">
-          ExámenesGratis
+          ExámenesVIH
         </Typography>
       </Box>
       <Box sx={{ display: `inlineFlex` }}>

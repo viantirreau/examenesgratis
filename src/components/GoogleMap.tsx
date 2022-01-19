@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { Loader } from '@googlemaps/js-api-loader';
-import { Container } from '@mui/material';
+import { Button, Container, Stack } from '@mui/material';
 import Papa from 'papaparse';
 import hospital from '@/public/local_hospital_white_24dp.svg';
 
@@ -21,6 +21,8 @@ export default function GoogleMap() {
   const googlemap = useRef(null);
   const [map, setMap] = useState<google.maps.Map | null>(null);
   const [points, setPoints] = useState<DataRow[]>([]);
+  const [userLat, setUserLat] = useState(-33.4513);
+  const [userLng, setUserLng] = useState(-70.6653);
 
   useEffect(() => {
     // https://www.papaparse.com/docs#remote-files
@@ -73,30 +75,41 @@ export default function GoogleMap() {
     }
   }, [points, map]);
 
-  useEffect(() => {
-    if (map !== null && `geolocation` in navigator) {
+  const setPositionOnMap = (lat: number, lng: number) => {
+    if (map) {
+      map?.panTo({ lat, lng });
+      map?.setZoom(14);
+
+      new google.maps.Marker({
+        position: { lat, lng },
+        title: `Tu ubicación actual`,
+        map,
+        optimized: true,
+      });
+    }
+  };
+
+  const askForPosition = () => {
+    const google = window.google;
+    if (`geolocation` in navigator && map) {
       console.log(`Available`);
       navigator.geolocation.getCurrentPosition(
         (position) => {
-          const lat = position.coords.latitude;
-          const lng = position.coords.longitude;
-          map?.panTo({ lat, lng });
-          map?.setZoom(14);
-          new google.maps.Marker({
-            position: { lat: lat as number, lng: lng as number },
-            title: `Tu ubicación actual`,
-            map,
-            optimized: true,
-          });
+          const { latitude: lat, longitude: lng } = position.coords;
+          setPositionOnMap(lat, lng);
+          setUserLat(lat);
+          setUserLng(lng);
         },
         (error) => {
+          setPositionOnMap(userLat, userLng);
           console.log(error);
         },
       );
     } else {
+      setPositionOnMap(userLat, userLng);
       console.log(`Not Available`);
     }
-  }, [map]);
+  };
 
   useEffect(() => {
     const loader = new Loader({
@@ -127,6 +140,15 @@ export default function GoogleMap() {
   return (
     <Container maxWidth="lg">
       <div id="map" ref={googlemap} style={{ minHeight: `50vh` }} />
+      <Stack marginTop={2}>
+        <Button
+          variant="contained"
+          sx={{ maxWidth: { md: `30%`, sm: `100%` }, margin: `0 auto` }}
+          onClick={askForPosition}
+        >
+          Encontrar mi posición en el mapa
+        </Button>
+      </Stack>
     </Container>
   );
 }
