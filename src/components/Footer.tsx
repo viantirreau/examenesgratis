@@ -9,7 +9,7 @@ const FooterLink = (href: string, label: string, index: number) => {
       key={`link-${index}`}
       variant="body2"
       sx={{
-        margin: `5px 10px 5px 10px`,
+        margin: `5px 30px 0px 30px`,
         color: `primary.main`,
         whiteSpace: `nowrap`,
       }}
@@ -22,10 +22,14 @@ const FooterLink = (href: string, label: string, index: number) => {
 };
 
 const links = [
-  { href: `/`, label: `Contáctanos` },
+  {
+    href: `https://github.com/viantirreau/examenesgratis`,
+    label: `Con ❤️ desde Chile`,
+  },
+  { href: `/contact`, label: `Contáctanos` },
   // { href: `/`, label: `Refiérenos` },
   // { href: `/`, label: `Trabaja con nosotros` },
-  { href: `/`, label: `Equipo` },
+  // { href: `/`, label: `Equipo` },
   // { href: `/`, label: `Propuestas` },
   // { href: `/`, label: `Términos y condiciones` },
   // { href: `/`, label: `Estadísticas abiertas` },
@@ -33,8 +37,8 @@ const links = [
 
 const Footer = () => {
   return (
-    <Box sx={{ height: `70px`, position: `relative`, bottom: `0px` }}>
-      <Box sx={{ padding: `10px 60px 10px 60px` }}>
+    <Box sx={{ height: `50px`, position: `relative`, bottom: `0px` }}>
+      <Box sx={{ padding: `10px 80px 30px 80px` }}>
         <Box sx={{ width: `80px` }}></Box>
         <Box
           sx={{

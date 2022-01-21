@@ -127,7 +127,7 @@ export default function GoogleMap() {
           center: { lat, lng },
           zoom,
           mapId: `1a80958d5f6f7a02`,
-          fullscreenControl: false, // remove the top-right button
+          fullscreenControl: true, // remove the top-right button
           mapTypeControl: true, // remove the top-left buttons
           streetViewControl: false, // remove the pegman
           zoomControl: true, // remove the bottom-right buttons
@@ -139,11 +139,11 @@ export default function GoogleMap() {
 
   return (
     <Container maxWidth="lg">
-      <div id="map" ref={googlemap} style={{ minHeight: `50vh` }} />
+      <div id="map" ref={googlemap} style={{ minHeight: `75vh` }} />
       <Stack marginTop={2}>
         <Button
           variant="contained"
-          sx={{ maxWidth: { md: `30%`, sm: `100%` }, margin: `0 auto` }}
+          sx={{ maxWidth: { md: `60%`, sm: `100%` }, margin: `0 auto` }}
           onClick={askForPosition}
         >
           Encontrar mi posición en el mapa

@@ -33,6 +33,7 @@ const Layout = ({ children }: Props) => {
           <Box
             sx={{
               width: `100%`,
+              minHeight: `75vh`,
               maxWidth: `1000px`,
               margin: `60px auto 40px auto`,
               flex: `1 0 auto`,

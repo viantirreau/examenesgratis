@@ -12,6 +12,11 @@ a {
   text-decoration: none;
 }
 
+article a {
+  color: #397bed;
+  text-decoration: underline;
+}
+
 * {
   box-sizing: border-box;
 }

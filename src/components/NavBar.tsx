@@ -43,7 +43,7 @@ const NavBar = () => {
             fontFamily: `Nunito Sans`,
           }}
           size="large"
-          onClick={() => redirect(`/wtf`)}
+          onClick={() => redirect(`/posts/info`)}
         >
           <Typography
             variant="body1"
@@ -54,7 +54,7 @@ const NavBar = () => {
               fontSize: `18px`,
             }}
           >
-            Cómo funciona
+            Información
           </Typography>
         </Button>
       </Box>
